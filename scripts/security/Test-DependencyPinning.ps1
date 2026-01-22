@@ -531,10 +531,19 @@ function Export-ComplianceReport {
     Exports compliance report in specified format.
     #>
     param(
-        [ComplianceReport]$Report,
+        # Use duck typing to avoid class type collision during code coverage instrumentation
+        $Report,
         [string]$Format,
         [string]$OutputPath
     )
+
+    # Validate required properties on duck-typed $Report parameter (ComplianceReport schema)
+    $requiredProperties = @('ComplianceScore', 'Violations', 'TotalDependencies', 'UnpinnedDependencies', 'Metadata')
+    foreach ($prop in $requiredProperties) {
+        if ($null -eq $Report.PSObject.Properties[$prop]) {
+            throw "Report object missing required property: $prop"
+        }
+    }
 
     # Ensure parent directory exists
     $parentDir = Split-Path -Path $OutputPath -Parent
