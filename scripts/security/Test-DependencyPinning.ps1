@@ -869,10 +869,23 @@ function Invoke-DependencyPinningAnalysis {
             foreach ($dep in $fileGroup.Group) {
                 $displayVersion = if ($dep.Version) { $dep.Version } elseif ($dep.CurrentRef) { $dep.CurrentRef } else { '<unknown>' }
                 Write-Host "  ⚠️ Line $($dep.Line): $($dep.Name) — $displayVersion (type: $($dep.Type))" -ForegroundColor Yellow
+
+                # Normalize file path for CI annotations: prefer absolute path based on scan root
+                $annotationFile = $dep.File
+                try {
+                    if ($Path) {
+                        $resolved = Resolve-Path -LiteralPath (Join-Path -Path $Path -ChildPath $dep.File) -ErrorAction Stop
+                        $annotationFile = $resolved.Path
+                    }
+                }
+                catch {
+                    $annotationFile = $dep.File
+                }
+
                 Write-CIAnnotation `
-                    -Message "Unpinned $($dep.Type) dependency: $($dep.Name)@$displayVersion" `
+                    -Message "Unpinned $($dep.Type) dependency: $($dep.Name)@$($dep.CurrentRef)" `
                     -Level Warning `
-                    -File $dep.File `
+                    -File $annotationFile `
                     -Line $dep.Line
             }
         }
