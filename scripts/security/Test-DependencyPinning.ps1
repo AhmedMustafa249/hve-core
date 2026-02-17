@@ -860,6 +860,26 @@ function Invoke-DependencyPinningAnalysis {
         $allViolations += $violations
     }
 
+    # Per-violation CI output — grouped by file
+    if (@($allViolations).Count -gt 0) {
+        Write-Host "`n❌ Found $(@($allViolations).Count) unpinned dependencies:" -ForegroundColor Red
+        $groupedByFile = $allViolations | Group-Object -Property File
+        foreach ($fileGroup in $groupedByFile) {
+            Write-Host "`n📄 $($fileGroup.Name)" -ForegroundColor Cyan
+            foreach ($dep in $fileGroup.Group) {
+                Write-Host "  ⚠️ Line $($dep.Line): $($dep.Name) — $($dep.CurrentRef) (type: $($dep.Type))" -ForegroundColor Yellow
+                Write-CIAnnotation `
+                    -Message "Unpinned $($dep.Type) dependency: $($dep.Name)@$($dep.CurrentRef)" `
+                    -Level Warning `
+                    -File $dep.File `
+                    -Line $dep.Line
+            }
+        }
+    }
+    else {
+        Write-Host "`n✅ All dependencies are properly SHA-pinned." -ForegroundColor Green
+    }
+
     Write-PinningLog "Found $(@($allViolations).Count) dependency pinning violations" -Level Info
 
     # Generate compliance report
