@@ -930,65 +930,47 @@ Describe 'Write-OutputResult' -Tag 'Unit' {
             )
         }
 
-        It 'Calls Write-CIAnnotation for each dependency with Warning level' {
+        BeforeEach {
             Mock Write-CIAnnotation { }
             Mock Write-CIStepSummary { }
             Write-OutputResult -Dependencies $script:githubDeps -OutputFormat 'github'
+        }
+
+        It 'Calls Write-CIAnnotation for each dependency with Warning level' {
             Should -Invoke Write-CIAnnotation -Times 2 -ParameterFilter { $Level -eq 'Warning' }
         }
 
         It 'Calls Write-CIAnnotation aggregate with Error level' {
-            Mock Write-CIAnnotation { }
-            Mock Write-CIStepSummary { }
-            Write-OutputResult -Dependencies $script:githubDeps -OutputFormat 'github'
             Should -Invoke Write-CIAnnotation -Times 1 -ParameterFilter { $Level -eq 'Error' }
         }
 
         It 'Calls Write-CIAnnotation total of 3 times (2 per-item + 1 aggregate)' {
-            Mock Write-CIAnnotation { }
-            Mock Write-CIStepSummary { }
-            Write-OutputResult -Dependencies $script:githubDeps -OutputFormat 'github'
             Should -Invoke Write-CIAnnotation -Times 3 -Exactly
         }
 
         It 'Calls Write-CIStepSummary exactly once' {
-            Mock Write-CIAnnotation { }
-            Mock Write-CIStepSummary { }
-            Write-OutputResult -Dependencies $script:githubDeps -OutputFormat 'github'
             Should -Invoke Write-CIStepSummary -Times 1 -Exactly
         }
 
         It 'Passes markdown containing the summary table header' {
- Mock Write-CIAnnotation { }
-            Mock Write-CIStepSummary { }
-            Write-OutputResult -Dependencies $script:githubDeps -OutputFormat 'github'
             Should -Invoke Write-CIStepSummary -Times 1 -ParameterFilter {
                 $Content -match '\| Dependency \| SHA Age \(days\) \| Threshold \(days\) \| Status \|'
             }
         }
 
         It 'Includes dependency names in summary content' {
-            Mock Write-CIAnnotation { }
-            Mock Write-CIStepSummary { }
-            Write-OutputResult -Dependencies $script:githubDeps -OutputFormat 'github'
             Should -Invoke Write-CIStepSummary -Times 1 -ParameterFilter {
                 $Content -match 'actions/checkout' -and $Content -match 'actions/setup-node'
             }
         }
 
         It 'Shows stale status for all dependencies' {
-            Mock Write-CIAnnotation { }
-            Mock Write-CIStepSummary { }
-            Write-OutputResult -Dependencies $script:githubDeps -OutputFormat 'github'
             Should -Invoke Write-CIStepSummary -Times 1 -ParameterFilter {
                 $Content -match 'Stale'
             }
         }
 
         It 'Includes totals in summary content' {
-            Mock Write-CIAnnotation { }
-            Mock Write-CIStepSummary { }
-            Write-OutputResult -Dependencies $script:githubDeps -OutputFormat 'github'
             Should -Invoke Write-CIStepSummary -Times 1 -ParameterFilter {
                 $Content -match 'Found:.+2' -and $Content -match 'Stale:.+2'
             }
@@ -996,31 +978,25 @@ Describe 'Write-OutputResult' -Tag 'Unit' {
     }
 
     Context 'GitHub output format with no stale dependencies' {
-        It 'Calls Write-CIAnnotation with Notice level for no stale deps' {
+        BeforeEach {
             Mock Write-CIAnnotation { }
             Mock Write-CIStepSummary { }
             Write-OutputResult -Dependencies @() -OutputFormat 'github'
+        }
+
+        It 'Calls Write-CIAnnotation with Notice level for no stale deps' {
             Should -Invoke Write-CIAnnotation -Times 1 -ParameterFilter { $Level -eq 'Notice' }
         }
 
         It 'Calls Write-CIAnnotation exactly once' {
-            Mock Write-CIAnnotation { }
-            Mock Write-CIStepSummary { }
-            Write-OutputResult -Dependencies @() -OutputFormat 'github'
             Should -Invoke Write-CIAnnotation -Times 1 -Exactly
         }
 
         It 'Calls Write-CIStepSummary exactly once' {
-            Mock Write-CIAnnotation { }
-            Mock Write-CIStepSummary { }
-            Write-OutputResult -Dependencies @() -OutputFormat 'github'
             Should -Invoke Write-CIStepSummary -Times 1 -Exactly
         }
 
         It 'Passes all-clear summary when no dependencies' {
-            Mock Write-CIAnnotation { }
-            Mock Write-CIStepSummary { }
-            Write-OutputResult -Dependencies @() -OutputFormat 'github'
             Should -Invoke Write-CIStepSummary -Times 1 -ParameterFilter {
                 $Content -match 'All Clear' -and $Content -match 'No stale dependencies detected'
             }

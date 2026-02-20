@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env pwsh
+#!/usr/bin/env pwsh
 # Copyright (c) Microsoft Corporation.
 # SPDX-License-Identifier: MIT
 #Requires -Version 7.0
@@ -676,7 +676,6 @@ function Write-OutputResult {
 
             # Build step summary markdown table
             $totalCount = @($Dependencies).Count
-            $staleCount = $totalCount
 
             if ($totalCount -eq 0) {
                 $summaryContent = @"
@@ -696,7 +695,7 @@ function Write-OutputResult {
                 $summaryContent = @"
 # 🔒 SHA Staleness Analysis
 
-**Found:** $totalCount | **Stale:** $staleCount
+**Found:** $totalCount | **Stale:** $totalCount
 
 | Dependency | SHA Age (days) | Threshold (days) | Status |
 |------------|----------------|-------------------|--------|
