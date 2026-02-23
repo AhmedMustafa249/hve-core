@@ -136,26 +136,6 @@ Describe 'Invoke-GitHubAPIWithRetry' -Tag 'Unit' {
     }
 }
 
-Describe 'Write-SecurityLog' -Tag 'Unit' {
-    Context 'Log output' {
-        It 'Does not throw for Info level' {
-            { Write-SecurityLog -Message 'Test message' -Level Info } | Should -Not -Throw
-        }
-
-        It 'Does not throw for Warning level' {
-            { Write-SecurityLog -Message 'Warning message' -Level Warning } | Should -Not -Throw
-        }
-
-        It 'Does not throw for Error level' {
-            { Write-SecurityLog -Message 'Error message' -Level Error } | Should -Not -Throw
-        }
-
-        It 'Does not throw for Success level' {
-            { Write-SecurityLog -Message 'Success message' -Level Success } | Should -Not -Throw
-        }
-    }
-}
-
 Describe 'Compare-ToolVersion' -Tag 'Unit' {
     Context 'Semantic version comparison' {
         It 'Returns true when latest is newer major version' {
@@ -1019,7 +999,7 @@ Describe 'Invoke-SHAStalenessCheck' -Tag 'Unit' {
 
             Mock Test-GitHubActionsForStaleness { return @() }
             Mock Get-ToolStaleness { }
-            Mock Write-OutputResult { }
+            Mock Write-SecurityOutput { }
             Mock New-Item { } -ParameterFilter { $ItemType -eq 'Directory' }
             Mock Write-SecurityLog { }
 
@@ -1040,7 +1020,7 @@ Describe 'Invoke-SHAStalenessCheck' -Tag 'Unit' {
                 )
             }
             Mock Get-ToolStaleness { }
-            Mock Write-OutputResult { }
+            Mock Write-SecurityOutput { }
 
             { Invoke-SHAStalenessCheck -OutputFormat 'console' -FailOnStale } |
                 Should -Throw '*Stale dependencies detected*'
@@ -1054,7 +1034,7 @@ Describe 'Invoke-SHAStalenessCheck' -Tag 'Unit' {
                 $script:StaleDependencies = @()
             }
             Mock Get-ToolStaleness { }
-            Mock Write-OutputResult { }
+            Mock Write-SecurityOutput { }
 
             { Invoke-SHAStalenessCheck -OutputFormat 'console' -FailOnStale } |
                 Should -Not -Throw
