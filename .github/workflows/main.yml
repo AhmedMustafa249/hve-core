@@ -309,6 +309,7 @@ jobs:
       contents: write
       id-token: write
       attestations: write
+      artifact-metadata: write
     steps:
       - name: Checkout Syft config
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4.2.2
@@ -364,13 +365,13 @@ jobs:
           subject-path: ${{ steps.vsix.outputs.file }}
 
       - name: Attest SBOM
-        uses: actions/attest-sbom@07e74fc4e78d1aad915e867f9a094073a9f71527 # v4.0.0
+        uses: actions/attest@59d89421af93a897026c735860bf21b6eb4f7b26 # v4.1.0
         with:
           subject-path: ${{ steps.vsix.outputs.file }}
           sbom-path: dist/${{ steps.vsix.outputs.name }}.spdx.json
 
       - name: Attest dependency SBOM
-        uses: actions/attest-sbom@07e74fc4e78d1aad915e867f9a094073a9f71527 # v4.0.0
+        uses: actions/attest@59d89421af93a897026c735860bf21b6eb4f7b26 # v4.1.0
         with:
           subject-path: ${{ steps.vsix.outputs.file }}
           sbom-path: dist/dependencies.spdx.json
