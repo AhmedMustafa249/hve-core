@@ -54,9 +54,9 @@ jobs:
             elif [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
               echo "_Initial push to branch — no prior commit range available._"
             else
-              CHANGED=$(git diff --name-only "$BEFORE_SHA" "$GIT_SHA" -- '.devcontainer/' '.github/workflows/copilot-setup-steps.yml' 2>/dev/null || true)
-
-              if [ -z "$CHANGED" ]; then
+              if ! CHANGED=$(git diff --name-only "$BEFORE_SHA" "$GIT_SHA" -- '.devcontainer/' '.github/workflows/copilot-setup-steps.yml' 2>&1); then
+                echo "_Could not compute diff: \`$BEFORE_SHA\` may not be reachable (force push?)._"
+              elif [ -z "$CHANGED" ]; then
                 echo "_No devcontainer infrastructure files changed in this push._"
               else
                 echo "| File | Category | Pre-build Impact |"
