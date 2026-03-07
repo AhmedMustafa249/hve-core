@@ -70,6 +70,12 @@ jobs:
                     .devcontainer/scripts/post-create.sh)
                       echo "| \`$file\` | Lifecycle Scripts | Low |"
                       ;;
+                    .devcontainer/Dockerfile*|.devcontainer/*.dockerfile)
+                      echo "| \`$file\` | Base Image | High |"
+                      ;;
+                    .devcontainer/features/*)
+                      echo "| \`$file\` | Features | Medium |"
+                      ;;
                     .devcontainer/devcontainer.json)
                       echo "| \`$file\` | Config | High |"
                       ;;
