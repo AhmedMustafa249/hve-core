@@ -2,6 +2,7 @@ import React from 'react';
 import {
   GettingStartedIcon,
   AgentsPromptsIcon,
+  CollectionsIcon,
   InstructionsSkillsIcon,
   WorkflowsIcon,
   DesignThinkingIcon,
@@ -65,6 +66,13 @@ export const iconCards: IconCardData[] = [
     title: 'Reusable patterns',
     href: '/docs/category/templates',
     description: 'Ready-to-use templates for ADRs, BRDs, agents, and instructions',
+  },
+  {
+    icon: <CollectionsIcon />,
+    supertitle: 'Collections',
+    title: 'Browse collections',
+    href: '/docs/getting-started/collections',
+    description: 'Compare and install focused VS Code extension editions for your team\'s domain',
   },
 ];
 

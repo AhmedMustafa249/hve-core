@@ -123,6 +123,8 @@ The skill reads collection assignments from the collection manifests (`collectio
 > [!NOTE]
 > Collection filtering applies to agents only. Copying of related prompts, instructions, and skills based on collection is planned for a future release.
 
+For full descriptions and direct marketplace install links for each collection, see [Collections](collections).
+
 ### Quick Decision Tree
 
 ```text

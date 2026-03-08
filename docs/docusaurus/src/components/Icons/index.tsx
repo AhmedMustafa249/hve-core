@@ -104,3 +104,22 @@ export function TemplatesExamplesIcon({ className }: { className?: string }) {
     </svg>
   );
 }
+
+export function CollectionsIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
+      <rect x="4" y="10" width="16" height="44" rx="3" fill="#0078d4" />
+      <rect x="4" y="10" width="16" height="16" rx="3" fill="#005ba1" />
+      <rect x="24" y="10" width="16" height="44" rx="3" fill="#7719aa" />
+      <rect x="24" y="10" width="16" height="16" rx="3" fill="#5a0e7e" />
+      <rect x="44" y="10" width="16" height="44" rx="3" fill="#e8740c" />
+      <rect x="44" y="10" width="16" height="16" rx="3" fill="#c45f08" />
+      <rect x="8" y="30" width="8" height="2" rx="1" fill="#fff" opacity="0.7" />
+      <rect x="8" y="35" width="6" height="2" rx="1" fill="#fff" opacity="0.5" />
+      <rect x="28" y="30" width="8" height="2" rx="1" fill="#fff" opacity="0.7" />
+      <rect x="28" y="35" width="6" height="2" rx="1" fill="#fff" opacity="0.5" />
+      <rect x="48" y="30" width="8" height="2" rx="1" fill="#fff" opacity="0.7" />
+      <rect x="48" y="35" width="6" height="2" rx="1" fill="#fff" opacity="0.5" />
+    </svg>
+  );
+}

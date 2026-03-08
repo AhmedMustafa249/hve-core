@@ -22,6 +22,7 @@ estimated_reading_time: 3
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/11795/badge)](https://www.bestpractices.dev/projects/11795)
 [![License](https://img.shields.io/github/license/microsoft/hve-core)](./LICENSE)
 [![Documentation](https://img.shields.io/badge/docs-microsoft.github.io%2Fhve--core-blue)](https://microsoft.github.io/hve-core/)
+[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/ise-hve-essentials.hve-core?label=VS%20Code%20Marketplace&logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=ise-hve-essentials.hve-core)
 <!-- markdownlint-enable MD013 -->
 
 Hypervelocity Engineering (HVE) Core is an enterprise-ready prompt engineering framework for GitHub Copilot. Constraint-based AI workflows, validated artifacts, and structured methodologies that scale from solo developers to large teams.
@@ -42,6 +43,8 @@ The RPI (Research → Plan → Implement) methodology structures complex enginee
 Install the VS Code extension from the Marketplace:
 
 [![Install HVE Core](https://img.shields.io/badge/Install_HVE_Core-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=ise-hve-essentials.hve-core)
+
+Browse [available collections](docs/getting-started/collections.md) to install a focused edition for your team's domain.
 
 Need a different installation method? See the [Installation Guide](docs/getting-started/install.md) for CLI plugins, submodules, multi-root workspaces, and more.
 
@@ -66,6 +69,7 @@ Full documentation is available at **<https://microsoft.github.io/hve-core/>**.
 | Guide                                                    | Description                                     |
 |----------------------------------------------------------|-------------------------------------------------|
 | [Getting Started](docs/getting-started/README.md)        | Setup and first workflow tutorial               |
+| [Collections](docs/getting-started/collections.md)       | Compare and install focused extension editions  |
 | [RPI Workflow](docs/rpi/README.md)                       | Deep dive into Research, Plan, Implement        |
 | [Contributing](docs/contributing/README.md)              | Create custom agents, instructions, and prompts |
 | [Agents Reference](.github/CUSTOM-AGENTS.md)             | All available agents                            |

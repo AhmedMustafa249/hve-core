@@ -35,6 +35,24 @@ To install the pre-release version, select **Install Pre-Release Version** from 
 
 {{FULL_EDITION}}
 
+## Browse All Collections
+
+HVE Core is available as focused extension editions. Install only what your team needs:
+
+| Collection | Description | Install |
+|---|---|---|
+| **HVE Core** (Full) | All stable agents, prompts, instructions, and skills | [Install](https://marketplace.visualstudio.com/items?itemName=ise-hve-essentials.hve-core) |
+| **Azure DevOps** | Work item management, builds, and PR creation | [Install](https://marketplace.visualstudio.com/items?itemName=ise-hve-essentials.ado) |
+| **GitHub Backlog** | Issue discovery, triage, and sprint planning | [Install](https://marketplace.visualstudio.com/items?itemName=ise-hve-essentials.github) |
+| **Coding Standards** | Language-specific conventions and pre-PR review | [Install](https://marketplace.visualstudio.com/items?itemName=ise-hve-essentials.coding-standards) |
+| **Data Science** | Data specs, Jupyter notebooks, Streamlit dashboards | [Install](https://marketplace.visualstudio.com/items?itemName=ise-hve-essentials.data-science) |
+| **Design Thinking** *(Preview)* | AI-enhanced 9-method DT coaching | [Install](https://marketplace.visualstudio.com/items?itemName=ise-hve-essentials.design-thinking) |
+| **Project Planning** | ADRs, BRDs, PRDs, architecture diagrams | [Install](https://marketplace.visualstudio.com/items?itemName=ise-hve-essentials.project-planning) |
+| **Security Planning** | Threat models, incident response, risk assessment | [Install](https://marketplace.visualstudio.com/items?itemName=ise-hve-essentials.security-planning) |
+| **Experimental** | Preview artifacts not yet promoted to stable | [Install](https://marketplace.visualstudio.com/items?itemName=ise-hve-essentials.experimental) |
+
+See [all collections](https://microsoft.github.io/hve-core/docs/getting-started/collections) for full details and artifact counts.
+
 ## Requirements
 
 * VS Code version 1.106.1 or higher
