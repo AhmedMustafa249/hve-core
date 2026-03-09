@@ -375,7 +375,7 @@ Click **💾 Save** in the RPI Agent chat interface at any point during a resear
 4. Click **🚀 Continue with RPI** or switch to the appropriate RPI agent to continue.
 
 > [!TIP]
-> Use **💾 Save** before any `/clear` between phases to preserve progress notes. The checkpoint file supplements—but does not replace—the planning artifacts in `.copilot-tracking/`.
+> Use **💾 Save** before any `/clear` between phases to preserve progress notes. The checkpoint file supplements but does not replace the planning artifacts in `.copilot-tracking/`.
 
 ## RPI Agent: When Simplicity Fits
 
