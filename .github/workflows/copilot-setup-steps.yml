@@ -69,11 +69,11 @@ jobs:
             echo "ERROR: Unsupported architecture for actionlint: ${ARCH}" >&2
             exit 1
           fi
-          curl -sLO "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/actionlint_${ACTIONLINT_VERSION}_linux_${ACTIONLINT_ARCH}.tar.gz"
-          echo "${ACTIONLINT_SHA256}  actionlint_${ACTIONLINT_VERSION}_linux_${ACTIONLINT_ARCH}.tar.gz" | sha256sum -c -
-          tar -xzf "actionlint_${ACTIONLINT_VERSION}_linux_${ACTIONLINT_ARCH}.tar.gz" actionlint
+          curl -sSfL "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/actionlint_${ACTIONLINT_VERSION}_linux_${ACTIONLINT_ARCH}.tar.gz" -o /tmp/actionlint.tar.gz
+          echo "${ACTIONLINT_SHA256}  /tmp/actionlint.tar.gz" | sha256sum -c -
+          tar -xzf /tmp/actionlint.tar.gz actionlint
           sudo install actionlint /usr/local/bin/actionlint
-          rm actionlint "actionlint_${ACTIONLINT_VERSION}_linux_${ACTIONLINT_ARCH}.tar.gz"
+          rm actionlint /tmp/actionlint.tar.gz
           actionlint --version
 
       - name: Install PowerShell modules
