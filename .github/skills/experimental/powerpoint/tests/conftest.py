@@ -4,6 +4,7 @@
 
 import struct
 import zlib
+from pathlib import Path
 
 import pytest
 from pptx import Presentation
@@ -83,3 +84,13 @@ def sample_image_path(tmp_path):
     img = tmp_path / "test.png"
     img.write_bytes(_minimal_png_bytes())
     return img
+
+
+@pytest.fixture(scope="session")
+def powerpoint_fixture_dir() -> Path:
+    return Path(__file__).parent / "fixtures"
+
+
+@pytest.fixture(scope="session")
+def minimal_test_fixture_path(powerpoint_fixture_dir: Path) -> Path:
+    return powerpoint_fixture_dir / "minimal_test_fixture.pptx"
